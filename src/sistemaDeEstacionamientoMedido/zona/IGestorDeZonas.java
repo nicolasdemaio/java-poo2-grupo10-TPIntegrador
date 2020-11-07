@@ -6,7 +6,7 @@ import java.util.List;
 public interface IGestorDeZonas {
 
 	public void añadirZona(Zona zona);
-	public boolean perteneceAUnaZona(Point punto);
+	public Boolean perteneceAUnaZona(Point punto);
 	public List<Zona> getZonas();
 	public Zona indicarZona(Point punto);
 	
