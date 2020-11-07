@@ -12,7 +12,7 @@ public class GestorDeInfracciones implements IGestorDeInfracciones {
 
 	@Override
 	public void registrarInfraccion(Infraccion infraccion) {
-		this.infracciones.add(infraccion);
+		this.getInfracciones().add(infraccion);
 		
 	}
 
