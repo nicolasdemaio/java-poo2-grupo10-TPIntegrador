@@ -17,6 +17,11 @@ public class Zona {
 		this.puntosDeVenta = new ArrayList<PuntoDeVenta>();
 	}
 	
+	/**
+	 * Indica si una zona contiene a un punto dado.
+	 * @param unPunto (Point)
+	 * @return Valor de verdad
+	 */
 	public Boolean contieneUnPunto(Point unPunto) {
 		return this.getArea().contains(unPunto);
 	}
