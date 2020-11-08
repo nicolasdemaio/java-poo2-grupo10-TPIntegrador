@@ -5,7 +5,6 @@ import static org.mockito.Mockito.*;
 
 import java.awt.Point;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -76,6 +75,19 @@ class GestorDeZonasTest {
 		assertEquals(zona, gestorDeZonas.indicarZona(puntoValido));
 	}
 	
-	// TODO: Fijarse si hacer que indicar zona lance excepcion si el punto no es contenido
+	@Test
+	void cuandoIndicarZonaRecibeUnPuntoNoContenidoPorAlgunaZona_LanzaExcepcion() {
+		//Setup - DOC
+		Point puntoNoValido = mock(Point.class);
+		Zona zona = mock(Zona.class);
+		
+		when(zona.contieneUnPunto(puntoNoValido)).thenReturn(false);
+		
+		//Exercise
+		gestorDeZonas.añadirZona(zona);
+		
+		//Verify
+		assertThrows(ZonaNoEncontradaException.class, () -> gestorDeZonas.indicarZona(puntoNoValido));
+	}
 
 }
