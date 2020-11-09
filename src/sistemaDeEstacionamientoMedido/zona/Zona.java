@@ -1,9 +1,11 @@
 package sistemaDeEstacionamientoMedido.zona;
 
-import java.awt.Point;
 import java.awt.Polygon;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
+
+import sistemaDeEstacionamientoMedido.puntoDeVenta.PuntoDeVenta;
 
 public class Zona {
 
@@ -19,10 +21,10 @@ public class Zona {
 	
 	/**
 	 * Indica si una zona contiene a un punto dado.
-	 * @param unPunto (Point)
+	 * @param unPunto (Point2D)
 	 * @return Valor de verdad
 	 */
-	public Boolean contieneUnPunto(Point unPunto) {
+	public Boolean contieneUnPunto(Point2D unPunto) {
 		return this.getArea().contains(unPunto);
 	}
 	
