@@ -4,9 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.Point;
 import java.awt.Polygon;
+import java.awt.geom.Point2D;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import sistemaDeEstacionamientoMedido.puntoDeVenta.PuntoDeVenta;
+
 import static org.mockito.Mockito.*;
 
 
@@ -37,7 +41,7 @@ class ZonaTest {
 	@Test
 	void cuandoUnPuntoNoEstaDentroDelAreaDeLaZona_NoContieneElPunto() {
 		//DOC
-		Point puntoNoValido = mock(Point.class);
+		Point2D puntoNoValido = mock(Point.class);
 		
 		//Exercise
 		when(poligono.contains(puntoNoValido)).thenReturn(false);
@@ -49,7 +53,7 @@ class ZonaTest {
 	@Test
 	void cuandoUnPuntoEstaDentroDelAreaDeLaZona_ContieneElPunto() {
 		//DOC
-		Point puntoValido = mock(Point.class);
+		Point2D puntoValido = mock(Point.class);
 
 		//Exercise
 		when(poligono.contains(puntoValido)).thenReturn(true);
