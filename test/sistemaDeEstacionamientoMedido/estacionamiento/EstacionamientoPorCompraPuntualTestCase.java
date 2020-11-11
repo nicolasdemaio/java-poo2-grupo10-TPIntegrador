@@ -2,35 +2,46 @@ package sistemaDeEstacionamientoMedido.estacionamiento;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 
 import sistemaDeEstacionamientoMedido.puntoDeVenta.CompraPuntual;
 import sistemaDeEstacionamientoMedido.zona.Zona;
 
 
 class EstacionamientoPorCompraPuntualTestCase {
-	Zona zona;
-	CompraPuntual compraPuntual;
-	EstacionamientoPorCompraPuntual estacionamientoCP;
+	private String patente;
+	private Double costoPorHora;
+	private Integer cantidadDeHoras;
+	private Zona zona;
+	private CompraPuntual compraPuntual;
+	private EstacionamientoPorCompraPuntual estacionamientoCP;
 	
 	@BeforeEach
 	void setUp() throws Exception {
+		
+		patente = "28LTD24";
+		costoPorHora = 40d;
+		cantidadDeHoras = 2;
+		zona = mock(Zona.class);
+		compraPuntual = mock(CompraPuntual.class);
+
+		when(compraPuntual.getCantidadDeHoras()).thenReturn(cantidadDeHoras);
+		
+		estacionamientoCP = new EstacionamientoPorCompraPuntual (patente, costoPorHora, zona, compraPuntual);
 		
 	}
 
 	@Test
 	void testConstructor() {
-		String patente = "28ULI24";
-		Double costoPorHora = 40d;
-		Integer cantidadDeHoras = 4;
-		//zona = mock(Zona.class);
-		//compraPuntual = mock(CompraPuntual.class);
-		
-		estacionamientoCP = new EstacionamientoPorCompraPuntual (patente, costoPorHora, zona, cantidadDeHoras, compraPuntual);
-		
+				
 		assertEquals(patente, estacionamientoCP.getPatente());
 		assertEquals(costoPorHora, estacionamientoCP.getCostoPorHora());
 		assertEquals(zona, estacionamientoCP.getZona());
@@ -39,25 +50,22 @@ class EstacionamientoPorCompraPuntualTestCase {
 	}
 	
 	@Test
-	void testEstaVigente() {
-		String patente = "28ULI24";
-		Double costoPorHora = 40d;
-		Integer cantidadDeHoras = 4;
-		
-		estacionamientoCP = new EstacionamientoPorCompraPuntual (patente, costoPorHora, zona, cantidadDeHoras, compraPuntual);
-		
+	void testEstaVigenteCuandoSeCrea() {
+				
 		assertTrue(estacionamientoCP.estaVigente());
 	}
 	
 	@Test
-	void testNoEstaVigente() {
-		String patente = "28ULI24";
-		Double costoPorHora = 40d;
-		Integer cantidadDeHoras = 0;
+	void testNoEstaVigenteCuandoSePasaDeLaCantidadDeHoras() {
+				
+		LocalDateTime horaEstipulada = LocalDateTime.now().plusHours(4);
 		
-		estacionamientoCP = new EstacionamientoPorCompraPuntual (patente, costoPorHora, zona, cantidadDeHoras, compraPuntual);
+		try (MockedStatic<LocalDateTime> hora = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
+			hora.when(LocalDateTime::now).thenReturn(horaEstipulada);
+			estacionamientoCP.finalizar();
+			assertFalse(estacionamientoCP.estaVigente());
+		}
 		
-		assertFalse(estacionamientoCP.estaVigente());
 	}
 	
 	@Test
