@@ -2,6 +2,9 @@ package sistemaDeEstacionamientoMedido.respuesta;
 
 import java.time.LocalDateTime;
 
+import sistemaDeEstacionamientoMedido.estacionamiento.Estacionamiento;
+
+
 public class RespuestaDeInicioPositiva implements Respuesta {
 
 	private LocalDateTime horaDeInicio, horaMaxima;

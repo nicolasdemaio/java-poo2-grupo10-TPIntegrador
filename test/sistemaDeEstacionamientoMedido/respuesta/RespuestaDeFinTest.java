@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import sistemaDeEstacionamientoMedido.estacionamiento.Estacionamiento;
+
 class RespuestaDeFinTest {
 
 	private Estacionamiento estacionamiento;
@@ -26,12 +28,11 @@ class RespuestaDeFinTest {
 		duracion = 2;
 		
 		horaDeInicio = LocalDateTime.of(2020, 12, 1, 10, 00);
-		horaDeFin = LocalDateTime.of(2020, 12, 1, 15, 30);
+		horaDeFin = LocalDateTime.of(2020, 12, 1, 12, 00);
 		
 		when(estacionamiento.getHoraDeFin()).thenReturn(horaDeFin);
 		when(estacionamiento.getHoraDeInicio()).thenReturn(horaDeInicio);
 		when(estacionamiento.getCosto()).thenReturn(costo);
-		when(estacionamiento.getDuracion()).thenReturn(duracion);
 		
 		//SUT
 		respuestaDeFin = new RespuestaDeFin(estacionamiento);
@@ -43,6 +44,12 @@ class RespuestaDeFinTest {
 		assertEquals(horaDeInicio, respuestaDeFin.getHoraInicio());
 		assertEquals(horaDeFin, respuestaDeFin.getHoraFin());
 		assertEquals(costo, respuestaDeFin.getCosto());
+	}
+	
+	@Test
+	void testGetDuracion() {
+		
+		//Verify
 		assertEquals(duracion, respuestaDeFin.getDuracion());
 	}
 	
