@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import sistemaDeEstacionamientoMedido.estacionamiento.Estacionamiento;
 
-
 class RespuestaDeInicioPositivaTest {
 
 	private Estacionamiento estacionamiento;
@@ -41,8 +40,8 @@ class RespuestaDeInicioPositivaTest {
 	
 	@Test
 	void testToString() {
-		String textoEsperado = "Hora de Inicio: " + this.horaDeInicio + 
-							   "\nHora Maxima: " + this.horaMaxima;
+		String textoEsperado = "Hora de Inicio: " + this.horaDeInicio.getHour() + 
+							   "\nHora Maxima: " + this.horaMaxima.getHour();
 		
 		//Verify
 		assertEquals(textoEsperado, respuestaDeInicioPositiva.toString());

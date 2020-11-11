@@ -32,8 +32,8 @@ public class RespuestaDeFin implements Respuesta {
 	}
 	
 	public String toString() {
-		return "Hora de Inicio: " + this.getHoraInicio() + 
-			   "\nHora de Fin: " + this.getHoraFin() +
+		return "Hora de Inicio: " + this.getHoraInicio().getHour() + 
+			   "\nHora de Fin: " + this.getHoraFin().getHour() +
 		       "\nDuracion (horas): " + this.getDuracion() +
 		       "\nCosto: " + this.getCosto();
 	}

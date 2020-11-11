@@ -55,8 +55,8 @@ class RespuestaDeFinTest {
 	
 	@Test
 	void testToString() {
-		String textoEsperado = "Hora de Inicio: " + this.horaDeInicio + 
-							   "\nHora de Fin: " + this.horaDeFin +
+		String textoEsperado = "Hora de Inicio: " + this.horaDeInicio.getHour() + 
+							   "\nHora de Fin: " + this.horaDeFin.getHour() +
 							   "\nDuracion (horas): " + this.duracion +
 							   "\nCosto: " + this.costo;
 		//Verify
