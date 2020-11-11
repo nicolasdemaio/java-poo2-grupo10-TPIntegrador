@@ -3,7 +3,9 @@ package sistemaDeEstacionamientoMedido.estacionamiento;
 import java.time.LocalDateTime;
 
 import sistemaDeEstacionamientoMedido.puntoDeVenta.CompraPuntual;
+
 import sistemaDeEstacionamientoMedido.zona.Zona;
+
 
 public class EstacionamientoPorCompraPuntual extends Estacionamiento {
 	
@@ -11,20 +13,23 @@ public class EstacionamientoPorCompraPuntual extends Estacionamiento {
 	private CompraPuntual compraPuntual;
 
 	public EstacionamientoPorCompraPuntual(String patente, Double costoPorHora, Zona zona,
-			Integer cantidadDeHoras, CompraPuntual compraPuntual) {
-		super(patente, LocalDateTime.now(), LocalDateTime.now().plusHours(cantidadDeHoras), costoPorHora, zona);
-		this.cantidadDeHoras = cantidadDeHoras;
+			CompraPuntual compraPuntual) {
+		
+		super(patente, LocalDateTime.now(), LocalDateTime.now().plusHours(compraPuntual.getCantidadDeHoras()), costoPorHora, zona);
+		this.cantidadDeHoras = compraPuntual.getCantidadDeHoras();
 		this.compraPuntual = compraPuntual;
 	}
 
+	
 	public Integer getCantidadDeHoras() {
-		return cantidadDeHoras;
+		return this.cantidadDeHoras;
 	}
 
 	public CompraPuntual getCompraPuntual() {
-		return compraPuntual;
+		return this.compraPuntual;
 	}
-
+	
+	
 	@Override
 	public Boolean estaVigente() {
 		return LocalDateTime.now().isBefore(getHoraDeFin());
