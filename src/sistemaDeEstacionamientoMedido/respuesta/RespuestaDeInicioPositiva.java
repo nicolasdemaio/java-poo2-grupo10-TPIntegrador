@@ -2,6 +2,8 @@ package sistemaDeEstacionamientoMedido.respuesta;
 
 import java.time.LocalDateTime;
 
+import sistemaDeEstacionamientoMedido.estacionamiento.Estacionamiento;
+
 public class RespuestaDeInicioPositiva implements Respuesta {
 
 	private LocalDateTime horaDeInicio, horaMaxima;
@@ -20,8 +22,8 @@ public class RespuestaDeInicioPositiva implements Respuesta {
 	}
 	
 	public String toString() {
-		return "Hora de Inicio: " + this.getHoraDeInicio() + 
-			   "\nHora Maxima: " + this.getHoraMaxima();
+		return "Hora de Inicio: " + this.getHoraDeInicio().getHour() + 
+			   "\nHora Maxima: " + this.getHoraMaxima().getHour();
 	}
 
 }
