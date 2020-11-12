@@ -19,6 +19,7 @@ class GestorDeZonasTest {
 
 	@Test
 	void cuandoUnGestorDeZonasEsInicializado_NoTieneNingunaZona() {
+		
 		//Verify
 		assertTrue(gestorDeZonas.getZonas().isEmpty());
 	}
@@ -88,6 +89,7 @@ class GestorDeZonasTest {
 		
 		//Verify
 		assertThrows(ZonaNoEncontradaException.class, () -> gestorDeZonas.indicarZona(puntoNoValido));
+		
 	}
 
 }

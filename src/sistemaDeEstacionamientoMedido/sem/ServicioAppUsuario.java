@@ -9,9 +9,13 @@ import sistemaDeEstacionamientoMedido.zona.IGestorDeZonas;
 public interface ServicioAppUsuario {
 	
 	public IGestorDeSaldo getGestorDeSaldo();
+	
 	public IGestorDeEstacionamientos getGestorDeEstacionamientos();
+	
 	public IGestorDeSuscriptores getGestorDeSuscriptores();
+	
 	public IGestorDeZonas getGestorDeZonas();
+	
 	public void agregarAppUsuario(AppUsuario appUsuario);
 	
 }

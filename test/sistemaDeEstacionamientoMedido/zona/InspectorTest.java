@@ -14,6 +14,7 @@ class InspectorTest {
 	@Test
 	void testConstructor() {
 		//Setup
+		
 		//SUT
 		Inspector inspector = new Inspector("Juan");
 		

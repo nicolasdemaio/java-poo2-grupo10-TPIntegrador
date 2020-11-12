@@ -6,6 +6,7 @@ import sistemaDeEstacionamientoMedido.gestorDeEstacionamiento.IGestorDeEstaciona
 public interface ServicioAppMunicipio {
 	
 	public IGestorDeInfracciones getGestorDeInfracciones();
+	
 	public IGestorDeEstacionamientos getGestorDeEstacionamientos();
 	
 }
