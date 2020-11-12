@@ -8,8 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-//import org.mockito.Mockito;
-//import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+import org.mockito.MockedStatic;
 import static org.mockito.Mockito.*;
 
 import sistemaDeEstacionamientoMedido.estacionamiento.Estacionamiento;
@@ -132,7 +132,7 @@ class GestorDeEstacionamientosTest {
 	}
 	
 	@Test
-	void testHayEstacionamientoEnRegla() {
+	void testHayEstacionamientoEnReglaCuandoHay() {
 		
 		LocalDateTime horaValida = LocalDateTime.now().plusHours(1);
 		
@@ -183,23 +183,29 @@ class GestorDeEstacionamientosTest {
 	
 	
 	@Test
-	void testEsSaldoSuficiente() {
+	void testEsSaldoSuficienteCuandoAlcanzaElSaldo() {
 		
 		Double saldoSufuciente = 80d;
 		assertTrue(gestorDeEstacionamientos.esSaldoSuficiente(saldoSufuciente));
+		
+	}
+	
+	
+	@Test
+	void testEsSaldoSuficienteCuandoNoAlcanzaElSaldo() {
 		
 		Double saldoInsuficiente = 20d;
 		assertFalse(gestorDeEstacionamientos.esSaldoSuficiente(saldoInsuficiente));
 		
 	}
 	
-	/*
+	
 	@Test
-	void testHoraMaximaDeFin() {
+	void testHoraMaximaDeFinCuandoElSaldoEsParaUnaHoraMenorALaHoraEstipuladaDeFinDelSistemaDeEstacionamiento() {
 		
 		Double saldoUsuario = 80d;
 		
-		LocalDateTime horaEstipulada = LocalDateTime.now().withHour(12);
+		LocalDateTime horaEstipulada = inicioDeHorarioDeEstacionamiento.withHour(12);
 		
 		try (MockedStatic<LocalDateTime> horaFin = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
 			horaFin.when(LocalDateTime::now).thenReturn(horaEstipulada);
@@ -207,14 +213,20 @@ class GestorDeEstacionamientosTest {
 		}
 		
 	}
-	*/
+	
 	
 	@Test
-	void testHoraMaximaDeFinCuandoElSaldoAlcanzaParaEStacionarUnaCantidadDeHorasMayorAlhorarioDeFinDeSistemaLaHoraDeFinEsEstaUltima() {
+	void testHoraMaximaDeFinCuandoElSaldoEsParaUnaHoraMayorALaHoraEstipuladaDeFinDelSistemaDeEstacionamiento() {
 		
-		Double saldoUsuario = 1000000d;
+		Double saldoUsuario = 250d;
 		
-		assertEquals(finDeHorarioDeEstacionamiento.getHour(), gestorDeEstacionamientos.horaMaximaDeFin(saldoUsuario).getHour());
+		LocalDateTime horaEstipulada = inicioDeHorarioDeEstacionamiento.withHour(17);
+		
+		try (MockedStatic<LocalDateTime> horaFin = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
+			horaFin.when(LocalDateTime::now).thenReturn(horaEstipulada);
+			assertEquals(finDeHorarioDeEstacionamiento, gestorDeEstacionamientos.horaMaximaDeFin(saldoUsuario));
+		}
 		
 	}
+	
 }
