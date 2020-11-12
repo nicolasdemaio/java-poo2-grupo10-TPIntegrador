@@ -37,7 +37,7 @@ public class EstacionamientoPorCompraPuntual extends Estacionamiento {
 
 	@Override
 	public void finalizar() {
-		
+		// Optamos porque sea un metodo vacio puesto que decidimos finalizar los estacionamientos de forma automatica
 	}
 
 }
