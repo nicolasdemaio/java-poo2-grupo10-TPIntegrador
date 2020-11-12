@@ -127,10 +127,13 @@ public class GestorDeEstacionamientos implements IGestorDeEstacionamientos {
 		
 		LocalDateTime horaActual = LocalDateTime.now();
 		Integer horasPosiblesDeEstacionamiento = (int)(saldo / this.getCostoPorHora());
-		Integer horaMaximaDeEstacionamiento = Math.min(horaActual.getHour() + horasPosiblesDeEstacionamiento,
-				 						this.getHoraFinEstacionamiento().getHour());
+		LocalDateTime horaMaximaDeEstacionamientoSegunSaldo = horaActual.plusHours(horasPosiblesDeEstacionamiento);
 		
-		return horaActual.withHour(horaMaximaDeEstacionamiento);
+		if (horaMaximaDeEstacionamientoSegunSaldo.isBefore(this.getHoraFinEstacionamiento())) {
+			return horaMaximaDeEstacionamientoSegunSaldo;
+		} else {
+			return this.getHoraFinEstacionamiento();
+		}
 	}
 	
 }
