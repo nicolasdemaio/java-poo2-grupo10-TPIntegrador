@@ -3,8 +3,8 @@ package sistemaDeEstacionamientoMedido.puntoDeVenta;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import sistemaDeEstacionamientoMedido.appMunicipio.IGestorDeEstacionamientos;
 import sistemaDeEstacionamientoMedido.estacionamiento.EstacionamientoPorCompraPuntual;
+import sistemaDeEstacionamientoMedido.gestorDeEstacionamiento.IGestorDeEstacionamientos;
 import sistemaDeEstacionamientoMedido.gestorDeSaldo.IGestorDeSaldo;
 import sistemaDeEstacionamientoMedido.sem.ServicioPuntoDeVenta;
 import sistemaDeEstacionamientoMedido.suscriptores.IGestorDeSuscriptores;
@@ -80,7 +80,8 @@ public class PuntoDeVenta {
 		CompraPuntual compraGenerada = new CompraPuntual (this, LocalDateTime.now(), cantidadDeHoras);
 		this.sectorDeCompras.registrarCompra(compraGenerada);
 		this.contadorDeCompras ++;
-		this.gestorDeEstacionamientos.añadirEstacionamiento(new EstacionamientoPorCompraPuntual(patente, 40d, cantidadDeHoras, compraGenerada ));
+		Double costoPorHora = this.getGestorDeEstacionamientos().getCostoPorHora();
+		this.gestorDeEstacionamientos.añadirEstacionamiento(new EstacionamientoPorCompraPuntual(patente, costoPorHora, this.getZona(), compraGenerada ));
 		
 	}
 
