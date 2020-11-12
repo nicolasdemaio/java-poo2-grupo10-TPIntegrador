@@ -6,7 +6,7 @@ public interface IGestorDeSaldo {
 	
 	public Double getSaldo(Integer nroCelular);
 	
-	public void disminuirSaldo(Integer nroCelular, Double saldo);
+	public void disminuirSaldo(Integer nroCelular, Double saldoARestar);
 	
 	
 }
