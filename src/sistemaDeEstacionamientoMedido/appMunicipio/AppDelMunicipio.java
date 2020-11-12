@@ -33,15 +33,15 @@ public class AppDelMunicipio {
 		return zona;
 	}
 
-	/*
+	/**
 	 * Registra una infracción al vehiculo con la patente indicada por parámetro.
 	 * Se asume que el inspector a cargo ya comprobó que este vehiculo no tenía en un
 	 * estacionamiento en regla.
 	 */
-	public void registrarInfraccion(String patente, LocalDateTime hora) {
+	public void registrarInfraccion(String patente) {
 		
 		this.getGestorDeInfracciones().registrarInfraccion(new Infraccion (patente,
-																	  	   hora,
+																	  	   LocalDateTime.now(),
 																	       zona.getInspector(),
 																	       zona));
 	}
