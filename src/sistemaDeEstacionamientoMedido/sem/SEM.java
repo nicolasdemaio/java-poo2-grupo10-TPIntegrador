@@ -39,7 +39,7 @@ public class SEM implements ServicioAppMunicipio, ServicioAppUsuario, ServicioPu
 	}
 
 	/**
-	 * Finaliza los estacionamientos vigentes de cada una de las aplicaciones registradas.
+	 * Finaliza los estacionamientos vigentes de cada una de las aplicaciones de usuario registradas.
 	 */
 	public void finalizarEstacionamientos() {
 		this.getAppsUsuario().stream().forEach(AppUsuario::finDeEstacionamiento);

@@ -37,9 +37,13 @@ public class GestorDeZonas implements IGestorDeZonas {
 	 */
 	public Zona indicarZona(Point2D unPunto) {
 		try {
+			
 			return this.getZonas().stream().filter(zona -> zona.contieneUnPunto(unPunto)).findFirst().get();
+			
 		} catch(Exception ex) {
+			
 			throw new ZonaNoEncontradaException("No existe una zona que contenga el punto dado.");
+			
 		}
 	}
 }

@@ -27,6 +27,14 @@ public class AppUsuario implements MovementSensor, ModeClient{
 	private IGestorDeZonas gestorDeZonas;
 	private ICelular celular;
 	
+	/**
+	 * Se instancia un objeto de la clase AppUsuario y ServicioAppUsuario registra la aplicacion creada.
+	 * @param servicio
+	 * @param patente
+	 * @param celular
+	 * @param modo
+	 * @param estadoDeMovimiento
+	 */
 	public AppUsuario(ServicioAppUsuario servicio, String patente, 
 			          ICelular celular, Modo modo, EstadoDeMovimiento estadoDeMovimiento) {
 		this.patente = patente;
@@ -40,6 +48,7 @@ public class AppUsuario implements MovementSensor, ModeClient{
 		this.gestorDeZonas = servicio.getGestorDeZonas();
 		this.celular = celular;
 		
+		servicio.agregarAppUsuario(this);
 	}
 	
 

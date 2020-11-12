@@ -33,6 +33,7 @@ class RespuestaDeInicioPositivaTest {
 
 	@Test
 	void cuandoUnaRespuestaDeInicioPositivaEsInicializada_LaHoraDeInicioYHoraMaximaSonLasDelEstacionamiento() {
+		
 		//Verify
 		assertEquals(horaDeInicio, respuestaDeInicioPositiva.getHoraDeInicio());
 		assertEquals(horaMaxima, respuestaDeInicioPositiva.getHoraMaxima());

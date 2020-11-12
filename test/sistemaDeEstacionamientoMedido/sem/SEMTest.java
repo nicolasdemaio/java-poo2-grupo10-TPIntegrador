@@ -43,7 +43,7 @@ class SEMTest {
 		assertEquals(gestorDeSuscriptores, sistema.getGestorDeSuscriptores());
 		assertEquals(gestorDeSaldo, sistema.getGestorDeSaldo());
 		assertEquals(gestorDeInfracciones, sistema.getGestorDeInfracciones());
-		assertTrue(sistema.getAppsUsuario().isEmpty()); //Se testea que el SEM no contenga appsUsuario
+		assertTrue(sistema.getAppsUsuario().isEmpty()); //Se testea que el SEM no contenga aplicaciones de usuarios registradas
 	}
 	
 	@Test

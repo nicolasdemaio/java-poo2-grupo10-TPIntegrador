@@ -54,6 +54,7 @@ class GestorDeSuscriptoresTest {
 	void cuandoElGestorNotificaALosSuscriptores_SuscriptorRecibeLaNotificacion() {
 		//Setup - DOC
 		ISuscriptor suscriptor = mock(ISuscriptor.class);
+		
 		Notificacion notificacion = mock(Notificacion.class);
 		
 		//Exercise

@@ -26,6 +26,7 @@ class ZonaTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		poligono = mock(Polygon.class);
+		
 		inspector = mock(Inspector.class);
 		
 		zona = new Zona(poligono, inspector);
