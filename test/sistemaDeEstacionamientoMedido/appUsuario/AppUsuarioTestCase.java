@@ -69,6 +69,7 @@ class AppUsuarioTestCase {
 		assertEquals(gestorDeZonas, app.getGestorDeZonas());
 		assertEquals(ubicacionActual, app.getUltimoPuntoDeEstacionamiento());
 		assertFalse(app.tieneDesplazamientoActivo());
+		verify(servicio, times(1)).agregarAppUsuario(app);
 	}
 	
 	@Test 
