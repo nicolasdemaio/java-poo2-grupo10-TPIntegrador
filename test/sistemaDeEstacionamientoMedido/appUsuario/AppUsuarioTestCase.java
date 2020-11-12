@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import sistemaDeEstacionamientoMedido.appMunicipio.Infraccion;
 import sistemaDeEstacionamientoMedido.estacionamiento.Estacionamiento;
 import sistemaDeEstacionamientoMedido.estacionamiento.EstacionamientoMedianteApp;
 import sistemaDeEstacionamientoMedido.gestorDeEstacionamiento.IGestorDeEstacionamientos;
@@ -351,7 +350,7 @@ class AppUsuarioTestCase {
 		Double costoEstacionamiento = 80d;
 		when(estacionamiento.getCosto()).thenReturn(costoEstacionamiento);
 		when(estacionamiento.getHoraDeInicio()).thenReturn(horaDeInicio);
-		when(estacionamiento.getHoraDeInicio()).thenReturn(horaFin);
+		when(estacionamiento.getHoraDeFin()).thenReturn(horaFin);
 		when(gestorDeEstacionamientos.finalizarVigenciaDeEstacionamiento(nroCelular)).thenReturn(estacionamiento);
 
 		//EXERCISE

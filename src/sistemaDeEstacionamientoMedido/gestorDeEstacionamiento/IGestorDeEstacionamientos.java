@@ -22,6 +22,6 @@ public interface IGestorDeEstacionamientos {
 
 	public Double getCostoPorHora();
 
-	public Integer horaMaximaDeFin(Double saldo);
+	public LocalDateTime horaMaximaDeFin(Double saldo);
 
 }

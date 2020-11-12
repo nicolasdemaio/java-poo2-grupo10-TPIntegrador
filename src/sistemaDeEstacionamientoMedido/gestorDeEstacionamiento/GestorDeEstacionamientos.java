@@ -106,14 +106,14 @@ public class GestorDeEstacionamientos implements IGestorDeEstacionamientos {
 	}
 
 	@Override
-	public Integer horaMaximaDeFin(Double saldo) {
+	public LocalDateTime horaMaximaDeFin(Double saldo) {
 		
 		LocalDateTime horaActual = LocalDateTime.now();
 		Integer horasPosiblesDeEstacionamiento = (int)(saldo / this.getCostoPorHora());
-		Integer horaMaxima = Math.max(horaActual.getHour() + horasPosiblesDeEstacionamiento,
+		Integer horaMaximaDeEstacionamiento = Math.min(horaActual.getHour() + horasPosiblesDeEstacionamiento,
 				 						this.getHoraFinEstacionamiento().getHour());
 		
-		return horaMaxima;
+		return LocalDateTime.now().withHour(horaMaximaDeEstacionamiento);
 	}
-
+	
 }
