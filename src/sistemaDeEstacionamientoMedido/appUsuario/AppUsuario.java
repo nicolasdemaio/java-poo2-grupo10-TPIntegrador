@@ -60,13 +60,19 @@ public class AppUsuario implements MovementSensor, ModeClient{
 		this.tieneDesplazamientoActivo = false;
 	}
 	
-	
+	/**
+	 * Cambia el modo de la aplicación. Se puede elegir entre ModoAutomatico y ModoManual.
+	 * @param unModo  
+	 */
 	public void cambiarModo(Modo unModo) {
 		
 		this.modo = unModo;
 		
 	}
-	
+	/**
+	 * Describe el saldo en el sistema  del celular al que esta vinculado la aplicación.
+	 * @return Double saldo
+	 */
 	public Double consultarSaldo() {
 		
 		return this.getGestorDeSaldo().getSaldo(celular.getNumeroDeCelular());
@@ -201,7 +207,6 @@ public class AppUsuario implements MovementSensor, ModeClient{
 		return this.getCelular().getPosicion().equals(this.getUltimoPuntoDeEstacionamiento());
 		
 	}
-	
 	
 	
 	private boolean haySaldoSuficiente() {
