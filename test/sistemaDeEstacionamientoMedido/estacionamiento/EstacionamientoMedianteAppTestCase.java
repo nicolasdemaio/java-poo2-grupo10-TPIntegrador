@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-//import org.mockito.MockedStatic;
-//import org.mockito.Mockito;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 import static org.mockito.Mockito.*;
 
 import sistemaDeEstacionamientoMedido.zona.Zona;
@@ -70,11 +70,11 @@ class EstacionamientoMedianteAppTestCase {
 		
 	}
 	
-	/*
+	
 	@Test
 	void testFinalizarCambiaLaHoraDeFinALaActual() {
 		
-		LocalDateTime horaEstipulada = LocalDateTime.now().plusHours(2);
+		LocalDateTime horaEstipulada = LocalDateTime.now().plusHours(1);
 		
 		try (MockedStatic<LocalDateTime> horaFin = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
 			horaFin.when(LocalDateTime::now).thenReturn(horaEstipulada);
@@ -97,6 +97,6 @@ class EstacionamientoMedianteAppTestCase {
 		}
 		
 	}
-	*/
+	
 
 }
