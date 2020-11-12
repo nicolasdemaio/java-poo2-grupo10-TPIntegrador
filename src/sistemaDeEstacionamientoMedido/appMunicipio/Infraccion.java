@@ -2,6 +2,9 @@ package sistemaDeEstacionamientoMedido.appMunicipio;
 
 import java.time.LocalDateTime;
 
+import sistemaDeEstacionamientoMedido.zona.Inspector;
+import sistemaDeEstacionamientoMedido.zona.Zona;
+
 public class Infraccion {
     private String patente;
     private LocalDateTime fechaYHora;

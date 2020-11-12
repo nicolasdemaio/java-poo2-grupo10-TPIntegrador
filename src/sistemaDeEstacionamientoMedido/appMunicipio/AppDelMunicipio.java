@@ -1,7 +1,10 @@
 package sistemaDeEstacionamientoMedido.appMunicipio;
 
 import java.time.LocalDateTime;
-import java.util.function.BooleanSupplier;
+
+import sistemaDeEstacionamientoMedido.gestorDeEstacionamiento.IGestorDeEstacionamientos;
+import sistemaDeEstacionamientoMedido.sem.ServicioAppMunicipio;
+import sistemaDeEstacionamientoMedido.zona.Zona;
 
 public class AppDelMunicipio {
 	IGestorDeEstacionamientos gestorDeEstacionamientos;
@@ -11,7 +14,7 @@ public class AppDelMunicipio {
 
 	public AppDelMunicipio(ServicioAppMunicipio servicio, Zona zona) {
 		this.zona = zona;
-		this.gestorDeEstacionamientos = servicio.getSectorDeEstacionamientos();
+		this.gestorDeEstacionamientos = servicio.getGestorDeEstacionamientos();
 		this.gestorDeInfracciones = servicio.getGestorDeInfracciones();
 	}
 

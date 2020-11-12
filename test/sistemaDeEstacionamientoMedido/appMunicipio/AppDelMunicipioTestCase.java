@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import sistemaDeEstacionamientoMedido.gestorDeEstacionamiento.IGestorDeEstacionamientos;
+import sistemaDeEstacionamientoMedido.sem.ServicioAppMunicipio;
+import sistemaDeEstacionamientoMedido.zona.Inspector;
+import sistemaDeEstacionamientoMedido.zona.Zona;
 
 import static org.mockito.Mockito.*;
 
@@ -26,7 +30,7 @@ class AppDelMunicipioTestCase {
 		gestorDeEstacionamientos = mock(IGestorDeEstacionamientos.class);
 		gestorDeInfracciones = mock(IGestorDeInfracciones.class);
 		when(servicio.getGestorDeInfracciones()).thenReturn(gestorDeInfracciones);
-		when(servicio.getSectorDeEstacionamientos()).thenReturn(gestorDeEstacionamientos);
+		when(servicio.getGestorDeEstacionamientos()).thenReturn(gestorDeEstacionamientos);
 	}
 
 	@Test

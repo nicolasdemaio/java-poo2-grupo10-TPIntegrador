@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import sistemaDeEstacionamientoMedido.appMunicipio.IGestorDeEstacionamientos;
 import sistemaDeEstacionamientoMedido.estacionamiento.EstacionamientoPorCompraPuntual;
+import sistemaDeEstacionamientoMedido.gestorDeEstacionamiento.IGestorDeEstacionamientos;
 import sistemaDeEstacionamientoMedido.gestorDeSaldo.IGestorDeSaldo;
 import sistemaDeEstacionamientoMedido.sem.ServicioPuntoDeVenta;
 import sistemaDeEstacionamientoMedido.suscriptores.IGestorDeSuscriptores;

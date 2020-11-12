@@ -6,6 +6,10 @@ import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import sistemaDeEstacionamientoMedido.zona.Inspector;
+import sistemaDeEstacionamientoMedido.zona.Zona;
+
 import static org.mockito.Mockito.*;
 class InfraccionTestCase {
 

@@ -4,7 +4,7 @@ public class Manejando extends EstadoDeMovimiento {
 	
 	@Override
 	public void walking (AppUsuario appUsuario) {
-		if (appUsuario.tieneDesplazamientoActivo() && appUsuario.correspondeEstacionar()  ) {
+		if (appUsuario.tieneDesplazamientoActivo() && appUsuario.correspondeEstacionar()) {
 			appUsuario.cambiarEstadoDeMovimiento(new Caminando());
 			appUsuario.alertarInicioEstacionamiento();
 		}

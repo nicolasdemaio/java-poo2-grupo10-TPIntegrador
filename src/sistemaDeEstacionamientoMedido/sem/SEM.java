@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sistemaDeEstacionamientoMedido.appMunicipio.IGestorDeInfracciones;
+import sistemaDeEstacionamientoMedido.appUsuario.AppUsuario;
+import sistemaDeEstacionamientoMedido.gestorDeEstacionamiento.IGestorDeEstacionamientos;
 import sistemaDeEstacionamientoMedido.gestorDeSaldo.IGestorDeSaldo;
 import sistemaDeEstacionamientoMedido.suscriptores.IGestorDeSuscriptores;
 import sistemaDeEstacionamientoMedido.suscriptores.ISuscriptor;
