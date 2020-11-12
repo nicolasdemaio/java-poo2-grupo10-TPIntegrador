@@ -122,7 +122,6 @@ class GestorDeEstacionamientosTest {
 	void testHayEstacionamientoVigenteCuandoNingunoPoseeLaPatenteIndicada() {
 		
 		String patenteIncorrecta = "tmm294";
-		
 		gestorDeEstacionamientos.añadirEstacionamiento(estacionamiento, nroCelular);
 		
 		when(estacionamiento.estaVigente()).thenReturn(true);
@@ -135,7 +134,6 @@ class GestorDeEstacionamientosTest {
 	void testHayEstacionamientoEnReglaCuandoHay() {
 		
 		LocalDateTime horaValida = LocalDateTime.now().plusHours(1);
-		
 		gestorDeEstacionamientos.añadirEstacionamiento(estacionamiento, nroCelular);
 		
 		when(estacionamiento.estaVigente()).thenReturn(true);
@@ -148,7 +146,6 @@ class GestorDeEstacionamientosTest {
 	@Test
 	void testHayEstacionamientoEnReglaCuandoNoHay() {
 		LocalDateTime horaInvalida = LocalDateTime.now().minusHours(1);
-		
 		gestorDeEstacionamientos.añadirEstacionamiento(estacionamiento, nroCelular);
 		
 		when(estacionamiento.estaVigente()).thenReturn(true);
@@ -161,6 +158,7 @@ class GestorDeEstacionamientosTest {
 	void testEsHorarioDeEstacionamientoCuandoElHorarioEstaDentroDelHorarioEstipulado() {
 		
 		LocalDateTime horaDentroDelRango = inicioDeHorarioDeEstacionamiento.plusHours(2);
+		
 		assertTrue(gestorDeEstacionamientos.esHorarioDeEstacionamiento(horaDentroDelRango));
 		
 	}
@@ -169,6 +167,7 @@ class GestorDeEstacionamientosTest {
 	void testEsHorarioDeEstacionamientoCuandoElHorarioEsSuperiorALaHoraDeFin() {
 		
 		LocalDateTime horaFueraDelRango = finDeHorarioDeEstacionamiento.plusHours(2);
+		
 		assertFalse(gestorDeEstacionamientos.esHorarioDeEstacionamiento(horaFueraDelRango));
 		
 	}
@@ -177,6 +176,7 @@ class GestorDeEstacionamientosTest {
 	void testEsHorarioDeEstacionamientoCuandoElHorarioEsInferiorALaHoraInicial() {
 		
 		LocalDateTime horaFueraDelRango = inicioDeHorarioDeEstacionamiento.minusHours(2);
+		
 		assertFalse(gestorDeEstacionamientos.esHorarioDeEstacionamiento(horaFueraDelRango));
 		
 	}
@@ -186,6 +186,7 @@ class GestorDeEstacionamientosTest {
 	void testEsSaldoSuficienteCuandoAlcanzaElSaldo() {
 		
 		Double saldoSufuciente = 80d;
+		
 		assertTrue(gestorDeEstacionamientos.esSaldoSuficiente(saldoSufuciente));
 		
 	}
@@ -195,38 +196,41 @@ class GestorDeEstacionamientosTest {
 	void testEsSaldoSuficienteCuandoNoAlcanzaElSaldo() {
 		
 		Double saldoInsuficiente = 20d;
+		
 		assertFalse(gestorDeEstacionamientos.esSaldoSuficiente(saldoInsuficiente));
 		
 	}
 	
 	
 	@Test
-	void testHoraMaximaDeFinCuandoElSaldoEsParaUnaHoraMenorALaHoraEstipuladaDeFinDelSistemaDeEstacionamiento() {
-		
-		Double saldoUsuario = 80d;
-		
-		LocalDateTime horaEstipulada = inicioDeHorarioDeEstacionamiento.withHour(12);
-		
-		try (MockedStatic<LocalDateTime> horaFin = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
-			horaFin.when(LocalDateTime::now).thenReturn(horaEstipulada);
-			assertEquals(horaEstipulada.plusHours(2), gestorDeEstacionamientos.horaMaximaDeFin(saldoUsuario));
-		}
-		
-	}
-	
-	
-	@Test
-	void testHoraMaximaDeFinCuandoElSaldoEsParaUnaHoraMayorALaHoraEstipuladaDeFinDelSistemaDeEstacionamiento() {
-		
-		Double saldoUsuario = 250d;
-		
-		LocalDateTime horaEstipulada = inicioDeHorarioDeEstacionamiento.withHour(17);
-		
-		try (MockedStatic<LocalDateTime> horaFin = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
-			horaFin.when(LocalDateTime::now).thenReturn(horaEstipulada);
-			assertEquals(finDeHorarioDeEstacionamiento, gestorDeEstacionamientos.horaMaximaDeFin(saldoUsuario));
-		}
-		
-	}
+    void testHoraMaximaDeFinCuandoElSaldoEsParaUnaHoraMenorALaHoraEstipuladaDeFinDelSistemaDeEstacionamiento() {
+
+        Double saldoUsuario = 80d;
+        // Esto serian dos horas despues del inicio del estacionamiento. En este caso en la variable serian las 9 
+        LocalDateTime horaInicioDeUnEstacionamiento = inicioDeHorarioDeEstacionamiento.plusHours(2);
+
+        try (MockedStatic<LocalDateTime> horaFin = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
+            horaFin.when(LocalDateTime::now).thenReturn(horaInicioDeUnEstacionamiento);
+            
+            assertEquals(horaInicioDeUnEstacionamiento.plusHours(2), gestorDeEstacionamientos.horaMaximaDeFin(saldoUsuario));
+        }
+
+    }
+
+
+    @Test
+    void testHoraMaximaDeFinCuandoElSaldoEsParaUnaHoraMayorALaHoraEstipuladaDeFinDelSistemaDeEstacionamiento() {
+
+        Double saldoUsuario = 250d;
+        // Esto serian diez horas despues del inicio del estacionamiento. En este caso en la variable serian las 17 
+        LocalDateTime horaInicioDeUnEstacionamiento = inicioDeHorarioDeEstacionamiento.plusHours(10);
+
+        try (MockedStatic<LocalDateTime> horaFin = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
+            horaFin.when(LocalDateTime::now).thenReturn(horaInicioDeUnEstacionamiento);
+            
+            assertEquals(finDeHorarioDeEstacionamiento, gestorDeEstacionamientos.horaMaximaDeFin(saldoUsuario));
+        }
+
+    }
 	
 }
