@@ -11,41 +11,52 @@ public class GestorDeEstacionamientos implements IGestorDeEstacionamientos {
 	private LocalDateTime horaInicioEstacionamiento;
 	private LocalDateTime horaFinEstacionamiento;
 	private Double costoPorHora;
-	private RegistroCelularPatente registroCelularPatente;
+	private IRegistroCelularPatente registroCelularPatente;
 	private List <Estacionamiento> estacionamientos;
 	
 	
 	public GestorDeEstacionamientos(LocalDateTime horaInicioEstacionamiento, LocalDateTime horaFinEstacionamiento,
-			Double costoPorHoraDeEstacionamiento, RegistroCelularPatente registroCelularPatente) {
+			Double costoPorHoraDeEstacionamiento, IRegistroCelularPatente registroCelularPatente) {
 		
-		this.horaInicioEstacionamiento = horaInicioEstacionamiento;
-		this.horaFinEstacionamiento = horaFinEstacionamiento;
-		this.costoPorHora = costoPorHoraDeEstacionamiento;
+		this.setHoraInicioEstacionamiento(horaInicioEstacionamiento);
+		this.setHoraFinEstacionamiento(horaFinEstacionamiento);
+		this.setCostoPorHora(costoPorHoraDeEstacionamiento);
 		this.registroCelularPatente = registroCelularPatente;
 		this.estacionamientos = new ArrayList <Estacionamiento>();
 		
 	}
 
 	public LocalDateTime getHoraInicioEstacionamiento() {
-		return horaInicioEstacionamiento;
+		return this.horaInicioEstacionamiento;
 	}
 
 	public LocalDateTime getHoraFinEstacionamiento() {
-		return horaFinEstacionamiento;
+		return this.horaFinEstacionamiento;
 	}
 
-	public RegistroCelularPatente getRegistroCelularPatente() {
-		return registroCelularPatente;
+	public IRegistroCelularPatente getRegistroCelularPatente() {
+		return this.registroCelularPatente;
 	}
 	
 	public List <Estacionamiento> getEstacionamientos() {
-		return estacionamientos;
+		return this.estacionamientos;
 	}
-	
+
+	public void setHoraInicioEstacionamiento(LocalDateTime horaInicioEstacionamiento) {
+		this.horaInicioEstacionamiento = horaInicioEstacionamiento;
+	}
+
+	public void setHoraFinEstacionamiento(LocalDateTime horaFinEstacionamiento) {
+		this.horaFinEstacionamiento = horaFinEstacionamiento;
+	}
+
+	public void setCostoPorHora(Double costoPorHora) {
+		this.costoPorHora = costoPorHora;
+	}
 
 	@Override
 	public void añadirEstacionamiento(Estacionamiento estacionamiento, Integer nroCelular) {
-		this.registroCelularPatente.asociar(nroCelular, estacionamiento.getPatente());
+		this.getRegistroCelularPatente().asociar(nroCelular, estacionamiento.getPatente());
 		this.añadirEstacionamiento(estacionamiento);
 
 	}
@@ -59,10 +70,10 @@ public class GestorDeEstacionamientos implements IGestorDeEstacionamientos {
 	@Override
 	public Estacionamiento finalizarVigenciaDeEstacionamiento(Integer nroCelular) {
 		String patente = this.getRegistroCelularPatente().getPatente(nroCelular);
-		return this.finalizarVigenciaDeEstacionamiento(patente);
+		return this.finalizarVigenciaDeEstacionamientoAuxiliar(patente);
 	}
 
-	private Estacionamiento finalizarVigenciaDeEstacionamiento(String patente) {
+	private Estacionamiento finalizarVigenciaDeEstacionamientoAuxiliar(String patente) {
 		Estacionamiento estacionamientoAFinalizar = 
 				this.getEstacionamientos().stream()
 											.filter(estacionamiento -> estacionamiento.estaVigente())
@@ -92,7 +103,7 @@ public class GestorDeEstacionamientos implements IGestorDeEstacionamientos {
 
 	@Override
 	public boolean esHorarioDeEstacionamiento(LocalDateTime date) {
-		return date.isAfter(getHoraInicioEstacionamiento()) && date.isBefore(getHoraFinEstacionamiento()) ;
+		return date.isAfter(this.getHoraInicioEstacionamiento()) && date.isBefore(this.getHoraFinEstacionamiento()) ;
 	}
 
 	@Override
@@ -104,7 +115,13 @@ public class GestorDeEstacionamientos implements IGestorDeEstacionamientos {
 	public Double getCostoPorHora() {
 		return this.costoPorHora;
 	}
-
+	
+	
+	/**
+	 * Indica la hora maxima posible de fin comparando la hora de finalizacion del sistema de estcionamientos
+	 * con la hora resultante de sumarle a la hora actual la cantidad de horas que puede costear el usuario con el saldo indicado
+	 * @return LocalDateTime horaMaxima
+	 */
 	@Override
 	public LocalDateTime horaMaximaDeFin(Double saldo) {
 		
@@ -113,7 +130,7 @@ public class GestorDeEstacionamientos implements IGestorDeEstacionamientos {
 		Integer horaMaximaDeEstacionamiento = Math.min(horaActual.getHour() + horasPosiblesDeEstacionamiento,
 				 						this.getHoraFinEstacionamiento().getHour());
 		
-		return LocalDateTime.now().withHour(horaMaximaDeEstacionamiento);
+		return horaActual.withHour(horaMaximaDeEstacionamiento);
 	}
 	
 }

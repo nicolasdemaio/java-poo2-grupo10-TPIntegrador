@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 //import org.mockito.MockedStatic;
-import org.mockito.Mockito;
+//import org.mockito.Mockito;
 import static org.mockito.Mockito.*;
 
 import sistemaDeEstacionamientoMedido.zona.Zona;
@@ -55,6 +55,11 @@ class EstacionamientoMedianteAppTestCase {
 		
 	}
 	
+	@Test
+	void testGetCosto() {
+		assertEquals(80d, estacionamientoMA.getCosto());
+	}
+	
 	
 	@Test
 	void testFinalizarCambiaElEstaVigenteAFalse() {
@@ -65,26 +70,19 @@ class EstacionamientoMedianteAppTestCase {
 		
 	}
 	
-	
+	/*
 	@Test
 	void testFinalizarCambiaLaHoraDeFinALaActual() {
 		
 		LocalDateTime horaEstipulada = LocalDateTime.now().plusHours(2);
 		
-		/*
-		MockedStatic<LocalDateTime> localDateTimeMock = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS) {
-			localDateTimeMock.when(LocalDateTime::now).thenReturn(horaEstipulada);
-		};
-		*/
-		
-		
-		/*try (MockedStatic<LocalDateTime> horaFin = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
+		try (MockedStatic<LocalDateTime> horaFin = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
 			horaFin.when(LocalDateTime::now).thenReturn(horaEstipulada);
 			estacionamientoMA.finalizar();
 		    assertEquals(horaEstipulada, estacionamientoMA.getHoraDeFin());
-		}*/
+		}
 		
-	}	
+	}
 		
 	@Test
 	void testFinalizarUnEstacionaminetoYPedirElCosto() {
@@ -92,13 +90,13 @@ class EstacionamientoMedianteAppTestCase {
 		LocalDateTime horaEstipulada = LocalDateTime.now().plusHours(2);
 		
 		
-		/*try (MockedStatic<LocalDateTime> horaFin = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
+		try (MockedStatic<LocalDateTime> horaFin = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
 			horaFin.when(LocalDateTime::now).thenReturn(horaEstipulada);
 			estacionamientoMA.finalizar();
 			assertEquals(80d, estacionamientoMA.getCosto());
-		}*/
+		}
 		
 	}
-		
+	*/
 
 }
