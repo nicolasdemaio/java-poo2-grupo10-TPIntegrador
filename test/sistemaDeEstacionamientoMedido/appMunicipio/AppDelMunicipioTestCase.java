@@ -44,19 +44,13 @@ class AppDelMunicipioTestCase {
 	}
 	
 	@Test
-	/*
-	 * Se quiere verificar que cuando se registre una infracción brindándole la patente de un vehiculo al
-	 * sistema, esta sea creada de manera correcta con los datos pertinentes almacenados en la aplicación del 
-	 * municipio, siendo estos la zona, el inspector, la patente recibida como argumento, y la hora actual.
-	 */
 	void testRegistrarInfraccion() {
 		String patente = "PSY-420";
-		LocalDateTime hora = LocalDateTime.now();
 		Inspector inspector = mock(Inspector.class);
 		when(zona.getInspector()).thenReturn(inspector);
 		AppDelMunicipio app = new AppDelMunicipio(servicio, zona);
 		
-		app.registrarInfraccion(patente,hora);
+		app.registrarInfraccion(patente);
 
 		verify(gestorDeInfracciones, times(1)).registrarInfraccion(any(Infraccion.class));
 	}
